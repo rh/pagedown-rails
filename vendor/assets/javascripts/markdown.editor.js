@@ -249,8 +249,6 @@
     function PanelCollection(postfix) {
         this.buttonBar = doc.getElementById("wmd-button-bar" + postfix);
         this.preview = doc.getElementById("wmd-preview" + postfix);
-        // this.input = doc.getElementById("wmd-input" + postfix);
-        alert(doc.getElementsByClassName("wmd-input" + postfix));
         this.input = doc.getElementsByClassName("wmd-input" + postfix)[0];
     };
 
