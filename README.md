@@ -7,7 +7,7 @@
 Add this line to the assets group in your Gemfile:
 
 ```ruby
-gem 'pagedown-rails', '~> 1.1.1'
+gem 'pagedown-rails', '~> 1.1.2'
 ```
 
 Add the necessary libraries to `app/assets/javascripts/application.js`:
