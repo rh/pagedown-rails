@@ -10,7 +10,7 @@
         nav = window.navigator,
         SETTINGS = { lineLength: 72 },
 
-    // Used to work around some browser bugs where we can't use feature testing.
+        // Used to work around some browser bugs where we can't use feature testing.
         uaSniffed = {
             isIE: /msie/.test(nav.userAgent.toLowerCase()),
             isIE_5or6: /msie 6/.test(nav.userAgent.toLowerCase()) || /msie 5/.test(nav.userAgent.toLowerCase()),
@@ -111,7 +111,10 @@
                                                   * its own image insertion dialog, this hook should return true, and the callback should be called with the chosen
                                                   * image url (or null if the user cancelled). If this hook returns false, the default dialog will be used.
                                                   */
-
+        hooks.addFalse("insertLinkDialog");       /* called with one parameter: a callback to be called with the URL of the link. If the application creates
+                                                  * its own link insertion dialog, this hook should return true, and the callback should be called with the chosen
+                                                  * link url (or null if the user cancelled). If this hook returns false, the default dialog will be used.
+                                                  */
         this.getConverter = function () { return markdownConverter; }
 
         var that = this,
@@ -1781,7 +1784,8 @@
                     ui.prompt(this.getString("imagedialog"), imageDefaultText, linkEnteredCallback);
             }
             else {
-                ui.prompt(this.getString("linkdialog"), linkDefaultText, linkEnteredCallback);
+                if (!this.hooks.insertLinkDialog(linkEnteredCallback))
+                    ui.prompt(this.getString("linkdialog"), linkDefaultText, linkEnteredCallback);
             }
             return true;
         }
